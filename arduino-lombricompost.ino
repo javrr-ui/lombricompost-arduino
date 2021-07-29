@@ -1,3 +1,6 @@
+#include <OneWire.h>
+#include <DallasTemperature.h>
+
 int sensorPin0 = A0;
 int sensorPin1 = A1;
 int boton = 13;
