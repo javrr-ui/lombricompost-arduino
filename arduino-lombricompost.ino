@@ -1,11 +1,15 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 
+const int tempSensor = 11;
 int sensorPin0 = A0;
 int sensorPin1 = A1;
 int boton = 13;
 int led = 12;
 int val;
+
+OneWire oneWireInstance(tempSensor);
+DallasTemperature DS18B20sensor(&oneWireInstance);
 
 void setup()
 {
