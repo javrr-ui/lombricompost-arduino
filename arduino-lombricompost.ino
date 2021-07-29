@@ -18,6 +18,8 @@ void setup()
   pinMode(boton, INPUT);
 
   Serial.begin(BAUDRATE);
+  // 1-wire bus begin
+  DS18B20sensor.begin();
 }
 
 void loop()
@@ -34,6 +36,13 @@ void loop()
   
   sensorReading(sensorPin0,"sensor1");
   sensorReading(sensorPin1,"sensor2");
+  //retrieves temperatures from sensor
+  DS18B20sensor.requestTemperatures();
+  Serial.print("Temperature: ");
+  Serial.print(DS18B20sensor.getTempCByIndex(0));
+  Serial.println(" C");
+
+  delay(500);
 
 }
 
