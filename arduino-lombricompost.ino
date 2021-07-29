@@ -1,6 +1,7 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 
+#define BAUDRATE 9600
 const int tempSensor = 11;
 int sensorPin0 = A0;
 int sensorPin1 = A1;
@@ -16,7 +17,7 @@ void setup()
   pinMode(led, OUTPUT);
   pinMode(boton, INPUT);
 
-  Serial.begin(9600);
+  Serial.begin(BAUDRATE);
 }
 
 void loop()
