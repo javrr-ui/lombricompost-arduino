@@ -1,13 +1,11 @@
 int sensorPin0 = A0;
 int sensorPin1 = A1;
-int rele = 2;
 int boton = 13;
 int led = 12;
 int val;
 
 void setup()
 {
-  pinMode(rele, OUTPUT);
   pinMode(led, OUTPUT);
   pinMode(boton, INPUT);
 
@@ -20,12 +18,10 @@ void loop()
   if (val == HIGH)
   {
     digitalWrite(led, HIGH);
-    digitalWrite(rele, HIGH);
   }
   else
   {
     digitalWrite(led, LOW);
-    digitalWrite(rele, LOW);
   }
   
   sensorReading(sensorPin0,"sensor1");
