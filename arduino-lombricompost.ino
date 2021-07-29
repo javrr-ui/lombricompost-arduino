@@ -1,8 +1,6 @@
 #define SENSORPIN0 A0
 #define SENSORPIN1 A1
 
-int sensorPin0 = A0;
-int sensorPin1 = A1;
 int boton = 13;
 int led = 12;
 int val;
