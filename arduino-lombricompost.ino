@@ -1,3 +1,6 @@
+#define SENSORPIN0 A0
+#define SENSORPIN1 A1
+
 int sensorPin0 = A0;
 int sensorPin1 = A1;
 int rele = 2;
@@ -28,8 +31,8 @@ void loop()
     digitalWrite(rele, LOW);
   }
   
-  sensorReading(sensorPin0,"sensor1");
-  sensorReading(sensorPin1,"sensor2");
+  sensorReading(SENSORPIN0,"sensor1");
+  sensorReading(SENSORPIN1,"sensor2");
 
 }
 
