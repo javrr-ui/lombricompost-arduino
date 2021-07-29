@@ -38,14 +38,15 @@ void loop()
   sensorReading(sensorPin1,"sensor2");
   //retrieves temperatures from sensor
   DS18B20sensor.requestTemperatures();
-  Serial.print("Temperature: ");
-  Serial.print(DS18B20sensor.getTempCByIndex(0));
-  Serial.println(" C");
-
+  tempSensorC(0,"tempSensor1");
   delay(500);
 
 }
 
+void tempSensorC(int sensorId,String text){
+  String msg = ""+String(DS18B20sensor.getTempCByIndex(sensorId),2)+text;
+  Serial.println(msg);
+}
 
 void sensorReading(int sensor,String texto)
 {
