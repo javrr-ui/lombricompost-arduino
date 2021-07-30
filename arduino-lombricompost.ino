@@ -47,16 +47,9 @@ void tempSensorC(int sensorId,String text){
   String msg = ""+String(DS18B20sensor.getTempCByIndex(sensorId),2)+text;
   Serial.println(msg);
 }
-
-void sensorReading(int sensor,String texto)
-{
-  float humedad = analogRead(sensor);
-  float res = ((humedad / 1020) * 100)-100;
-  if (res < 0)
-  {
-    res = res * -1;
-  }
-  String cadena = ""+String(res,2)+texto;
-
+void sensorReading(int sensor,String texto){
+  int val = analogRead(sensor);
+  val = map(val,0,1023,100,0);
+  String cadena = ""+String(val)+texto;
   Serial.println(cadena);
 }
