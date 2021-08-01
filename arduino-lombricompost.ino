@@ -8,7 +8,9 @@ int sensorPin1 = A1;
 int boton = 13;
 int led = 12;
 int val;
-
+int fan = 10;
+String fanState="";
+bool fanIsOn = false;
 OneWire oneWireInstance(tempSensor);
 DallasTemperature DS18B20sensor(&oneWireInstance);
 
@@ -16,6 +18,7 @@ void setup()
 {
   pinMode(led, OUTPUT);
   pinMode(boton, INPUT);
+  pinMode(fan,OUTPUT);
 
   Serial.begin(BAUDRATE);
   // 1-wire bus begin
@@ -39,7 +42,17 @@ void loop()
   //retrieves temperatures from sensor
   DS18B20sensor.requestTemperatures();
   tempSensorC(0,"tempSensor1");
-  delay(500);
+  //delay(500);
+
+  if(Serial.available()>0){
+    fanState = Serial.readString();
+    if(fanState == "fanOn"){
+      digitalWrite(fan,HIGH);
+    }
+    if(fanState == "fanOff"){
+      digitalWrite(fan,LOW);
+    }
+  }
 
 }
 
