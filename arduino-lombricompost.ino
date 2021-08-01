@@ -34,8 +34,8 @@ void loop()
     digitalWrite(led, LOW);
   }
   
-  sensorReading(sensorPin0,"sensor1");
-  sensorReading(sensorPin1,"sensor2");
+  sensorReading(sensorPin0,356,1006,"sensor1");
+  sensorReading(sensorPin1,354,1021,"sensor2");
   //retrieves temperatures from sensor
   DS18B20sensor.requestTemperatures();
   tempSensorC(0,"tempSensor1");
@@ -47,9 +47,16 @@ void tempSensorC(int sensorId,String text){
   String msg = ""+String(DS18B20sensor.getTempCByIndex(sensorId),2)+text;
   Serial.println(msg);
 }
-void sensorReading(int sensor,String texto){
+void sensorReading(int sensor,int min, int max, String texto){
   int val = analogRead(sensor);
-  val = map(val,0,1023,100,0);
+  if(val < min){
+    val = min;
+  }
+  if(val > max){
+    val = max;
+  }
+  val = map(val,min,max,100,0);
+
   String cadena = ""+String(val)+texto;
   Serial.println(cadena);
 }
