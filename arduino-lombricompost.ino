@@ -72,13 +72,12 @@ void temperatureControl(){
   }
 }
 
-
-
 void tempSensorC(int sensorId,String text){
   float temperature = DS18B20sensor.getTempCByIndex(sensorId);
   String msg = ""+String(temperature,2)+text;
   Serial.println(msg);
 }
+
 void sensorReading(int sensor,int min, int max, String texto){
   int val = analogRead(sensor);
   if(val < min){
