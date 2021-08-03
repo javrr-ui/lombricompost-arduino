@@ -22,7 +22,6 @@ void setup()
   pinMode(boton, INPUT);
   pinMode(fan,OUTPUT);
   pinMode(valve,OUTPUT);
-
   Serial.begin(BAUDRATE);
   // 1-wire bus begin
   DS18B20sensor.begin();
@@ -30,7 +29,6 @@ void setup()
 
 void loop()
 {
-  
   if(Serial.available()>0){
     data = Serial.readString();
     temperatureControl(data);
@@ -51,23 +49,20 @@ void loop()
   sensorReading(sensorPin1,354,1021,"sensor2");
   //retrieves temperatures from sensor
   DS18B20sensor.requestTemperatures();
-  //tempSensorC(0,"tempSensor1");
-  //delay(500);
+  tempSensorC(0,"tempSensor1");
   
 }
 
 void temperatureControl(String data){
-
   //fan control from serial communication
-    
-    if(data == "fanOn"){
-      fanIsOn = true;
-      digitalWrite(fan,HIGH);
-    }
-    if(data == "fanOff"){
-      fanIsOn = false;
-      digitalWrite(fan,LOW);
-    }
+  if(data == "fanOn"){
+    fanIsOn = true;
+    digitalWrite(fan,HIGH);
+  }
+  if(data == "fanOff"){
+    fanIsOn = false;
+    digitalWrite(fan,LOW);
+  }
   
   //fan control based on temperature
   if(fanIsOn == false){
@@ -95,7 +90,6 @@ void sensorReading(int sensor,int min, int max, String texto){
     val = max;
   }
   val = map(val,min,max,100,0);
-
   String cadena = ""+String(val)+texto;
   Serial.println(cadena);
 }
