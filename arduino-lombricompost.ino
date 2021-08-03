@@ -10,6 +10,7 @@ int led = 12;
 int val;
 int fan = 10;
 int valve = 9;
+int humiditySensor = 8;
 String data;
 bool valveIsOn = false;
 bool fanIsOn = false;
@@ -22,6 +23,7 @@ void setup()
   pinMode(boton, INPUT);
   pinMode(fan,OUTPUT);
   pinMode(valve,OUTPUT);
+  pinMode(humiditySensor,OUTPUT);
   Serial.begin(BAUDRATE);
   // 1-wire bus begin
   DS18B20sensor.begin();
@@ -33,6 +35,7 @@ void loop()
     data = Serial.readString();
     temperatureControl(data);
     valveControl(data);
+    humiditySensorControl(data);
   }
 
   val = digitalRead(boton);
@@ -104,4 +107,14 @@ void valveControl(String data){
       valveIsOn = false;
       digitalWrite(valve,LOW);
     }
+}
+
+void humiditySensorControl(String data){
+  // humidity sensor control from serial communication
+  if(data=="humiditySensorOn"){
+    digitalWrite(humiditySensor,HIGH);
+  }
+  if(data=="humiditySensorOff"){
+    digitalWrite(humiditySensor,LOW);
+  }
 }
